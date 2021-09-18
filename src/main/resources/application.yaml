@@ -1,0 +1,15 @@
+server:
+  port: 9999
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/sensitive?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&allowMultiQueries=true&useTimezone=true&serverTimezone=GMT%2B8
+    username: root
+    password: toor
+sensitive:
+  encrypt:
+    mybatis:
+      aesPassword: 1c14af35e660fc1094e6eb5eb41d6464
+      desPassword: 1fcef2fbce6d80ef
+      rsaPrivateKey: MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAKAyCePhAc9Qf99U3NpehTE5oGzbnYjNj2bwP4TVmY6XKFvPz3WzAEMiR4Y4q4M7SrdfI7rdbDLSVb1DOYkBKsnQCu684mltdsKfq8Mb4WBeuCMQoLAjP+qSWeYNy7sb2w6+5n+bxZt0MY+XJcLPPHbLDPtI73KoYQgxoL4DLbyTAgMBAAECgYA2LJXhpY8qH+wOh7Fke8CJRBa3mZFt2S5cvnSMpHuYmA/C9MUQ5ab6DRapEnMWHzAGUTtRD15u1Wi/Z4OGjIl+SxWZViOHgsy9S6hYuvA4WMBDM/YZYFaNLJZl5cyB5AIWMUBNKR0QErBb+LL2SED5ZKe+v6vY0WipjEQr7P5lUQJBANaA81EvMfqYrEvQUx6S4zcOjhCHo0ktWodTIquRgfyAHdZRZmuoJGUcb0Qp2muDFAkIrd2p4X3mDpo5Td/gOVkCQQC/L4jc8gucE+yf6WLmLriPmdPJsK9a0YCzuA/nxd0374FBN6jLRjDkChCFoo0W9Gcd5tTqnLwzge3VY4galvvLAkEA01oPZMi52A8ihTjpDVDx7Ee9FvBupSW482mo2Z/vkhmyTH+8CQuNgMr5nxIWEqT+0r/ogGZotiI99RvNbW+DUQJAb9cc1zN4+yrkp39d7Y2zRb4VGM2VJymbgobQNyOWj5w6Hq6yvYcoHp6Mn8BBjQYYNHPOZhieN/tv5/67peJhFQJATrpxKAAYvStHQS5hFCa9LVhejOng3oDUdU3J03xw1mvQFlQ2e3RoQMHin4LuuFSbAKdQ4AtPKFb0iRLvgT9sDw==
+      rsaPublicKey: MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCgMgnj4QHPUH/fVNzaXoUxOaBs252IzY9m8D+E1ZmOlyhbz891swBDIkeGOKuDO0q3XyO63Wwy0lW9QzmJASrJ0AruvOJpbXbCn6vDG+FgXrgjEKCwIz/qklnmDcu7G9sOvuZ/m8WbdDGPlyXCzzx2ywz7SO9yqGEIMaC+Ay28kwIDAQAB

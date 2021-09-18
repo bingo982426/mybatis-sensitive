@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.github.savageyo.mapper.LueLueLueMapper">
+  <resultMap id="BaseResultMap" type="cn.github.savageyo.model.LueLueLue">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="BIGINT" property="id"/>
+    <result column="name" jdbcType="VARCHAR" property="name"/>
+    <result column="id_no" jdbcType="VARCHAR" property="idNo"/>
+    <result column="bank_card" jdbcType="VARCHAR" property="bankCard"/>
+    <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+  </resultMap>
+
+  <select id="selectIdNoById" resultMap="BaseResultMap">
+    select id_no
+    from wa_la_la
+    where id = #{id,jdbcType=BIGINT};
+  </select>
+</mapper>
