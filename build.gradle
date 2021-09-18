@@ -31,6 +31,10 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompileOnly group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.33'
+    testCompileOnly group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.33'
+
+
 }
 
 test {

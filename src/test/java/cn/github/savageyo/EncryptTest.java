@@ -1,5 +1,6 @@
 package cn.github.savageyo;
 
+import cn.github.savageyo.mapper.LueLueLueMapper;
 import cn.github.savageyo.mapper.WaLaLaMapper;
 import cn.github.savageyo.model.WaLaLa;
 import cn.hutool.core.lang.Assert;
@@ -19,9 +20,11 @@ class EncryptTest {
 
   @Autowired
   WaLaLaMapper waLaLaMapper;
+  @Autowired
+  LueLueLueMapper lueLueLueMapper;
 
-//  @Test
-//  void genKey() {
+  @Test
+  void genKey() {
 //    byte[] aesEncoded = SecureUtil.generateKey(SymmetricAlgorithm.AES.getValue()).getEncoded();
 //    System.out.println("aesKey=" + HexUtil.encodeHexStr(aesEncoded));
 //    byte[] desEncoded = SecureUtil.generateKey(SymmetricAlgorithm.DES.getValue()).getEncoded();
@@ -31,7 +34,27 @@ class EncryptTest {
 //    System.out.println("rsa私钥=" + privateKeyBase64);
 //    String publicKeyBase64 = rsa.getPublicKeyBase64();
 //    System.out.println("rsa公钥=" + publicKeyBase64);
-//  }
+//    List<WaLaLa> waLaLaList = new ArrayList<>();
+//    for (int index = 1; index <= 1000; index++) {
+//      WaLaLa waLaLa = new WaLaLa();
+//      waLaLa.setName("tom" + index);
+//      waLaLa.setIdNo("110113199805210472");
+//      waLaLa.setMobile("13876688314");
+//      waLaLa.setBankCard("6216615283785976064");
+//      waLaLaList.add(waLaLa);
+//    }
+//    waLaLaMapper.insertList(waLaLaList);
+//    List<LueLueLue> lueLueLueList = new ArrayList<>();
+//    for (int index = 1; index <= 1000; index++) {
+//      LueLueLue lueLueLue = new LueLueLue();
+//      lueLueLue.setName("tom" + index);
+//      lueLueLue.setIdNo("110113199805210472");
+//      lueLueLue.setMobile("13876688314");
+//      lueLueLue.setBankCard("6216615283785976064");
+//      lueLueLueList.add(lueLueLue);
+//    }
+//    lueLueLueMapper.insertList(lueLueLueList);
+  }
 
   @Test
   void insert() {

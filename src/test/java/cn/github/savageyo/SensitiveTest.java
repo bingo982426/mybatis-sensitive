@@ -16,6 +16,9 @@ class SensitiveTest {
   @Autowired
   LueLueLueMapper lueLueLueMapper;
 
+  /**
+   * 先手动开启 {@link cn.github.savageyo.model.LueLueLue}内注释掉的三行代，开启脱敏注解
+   */
   @PostConstruct
   void init() {
     lueLueLueMapper.delete(new LueLueLue());
