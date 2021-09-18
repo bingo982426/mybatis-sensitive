@@ -30,6 +30,7 @@ public class LueLueLue implements Serializable {
   @Column(name = "name")
   private String name;
   @Column(name = "id_no")
+  @SensitiveField(SensitiveType.DEFAUL)
   private String idNo;
   @SensitiveField(SensitiveType.DEFAUL)
   @Column(name = "mobile")

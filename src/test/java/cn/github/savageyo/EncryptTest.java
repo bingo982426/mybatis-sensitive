@@ -167,4 +167,11 @@ class EncryptTest {
     PageInfo<WaLaLa> pageInfo = new PageInfo<>(waLaLaList);
     System.out.println(JSONUtil.toJsonStr(pageInfo));
   }
+
+  @Test
+  void selectCustom() {
+    WaLaLa waLaLa = waLaLaMapper.selectIdNoById(1);
+    System.out.println(JSONUtil.toJsonStr(waLaLa));
+    Assert.isFalse(waLaLa.getIdNo().contains("*"));
+  }
 }

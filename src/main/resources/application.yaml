@@ -6,6 +6,11 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/sensitive?useUnicode=true&characterEncoding=UTF-8&useSSL=false&autoReconnect=true&allowMultiQueries=true&useTimezone=true&serverTimezone=GMT%2B8
     username: root
     password: toor
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+
+
+
 sensitive:
   encrypt:
     mybatis:

@@ -33,4 +33,11 @@ class SensitiveTest {
     System.out.println(JSONUtil.toJsonStr(lueLueLueList));
     Assert.isTrue(lueLueLueList.get(0).getMobile().contains("*"));
   }
+
+  @Test
+  void selectCustom() {
+    LueLueLue lueLueLue = lueLueLueMapper.selectIdNoById(2);
+    System.out.println(JSONUtil.toJsonStr(lueLueLue));
+    Assert.isTrue(lueLueLue.getIdNo().contains("*"));
+  }
 }

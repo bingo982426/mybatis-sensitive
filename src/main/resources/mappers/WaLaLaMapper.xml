@@ -16,6 +16,6 @@
   <select id="selectIdNoById" resultMap="BaseResultMap">
     select id_no
     from wa_la_la
-    where id = #{id,jdbcType=BIGINT};
+    where id = #{id,jdbcType=INTEGER};
   </select>
 </mapper>
