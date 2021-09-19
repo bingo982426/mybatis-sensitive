@@ -22,6 +22,8 @@ public class MobileSensitiveHandler implements SensitiveTypeHandler {
       return null;
     }
     String mobile = src.toString();
-    return StrUtil.concat(true, mobile.substring(0, 3), "****", mobile.substring(7));
+    int length = mobile.length();
+    return StrUtil.padAfter(mobile.substring(0, 3), length - 4, "*")
+      .concat(mobile.substring(length - 4));
   }
 }

@@ -32,8 +32,7 @@ public class AddressSensitiveHandler implements SensitiveTypeHandler {
     if (length <= LEFT) {
       return address;
     } else {
-      return address.substring(0, LEFT + 1).concat("*****");
+      return StrUtil.padAfter(address.substring(0, LEFT + 1), length, "*");
     }
-
   }
 }

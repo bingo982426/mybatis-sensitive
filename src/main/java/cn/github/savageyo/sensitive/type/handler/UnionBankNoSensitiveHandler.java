@@ -22,6 +22,6 @@ public class UnionBankNoSensitiveHandler implements SensitiveTypeHandler {
       return null;
     }
     String snapCard = src.toString();
-    return StrUtil.fillAfter(snapCard.substring(0, 4), '*', snapCard.length());
+    return StrUtil.padAfter(snapCard.substring(0, 4), snapCard.length(), '*');
   }
 }

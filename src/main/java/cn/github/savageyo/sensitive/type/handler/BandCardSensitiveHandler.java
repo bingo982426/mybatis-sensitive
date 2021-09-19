@@ -23,7 +23,8 @@ public class BandCardSensitiveHandler implements SensitiveTypeHandler {
       return null;
     }
     String bankCard = StrUtil.replace(src.toString(), " ", "");
-    return bankCard.substring(0, 4).concat(StrUtil.fillAfter("", '*', 11))
-      .concat(bankCard.substring(15));
+    int length = bankCard.length();
+    return StrUtil.padAfter(bankCard.substring(0, 4), length - 4, "*")
+      .concat(bankCard.substring(length - 4));
   }
 }
