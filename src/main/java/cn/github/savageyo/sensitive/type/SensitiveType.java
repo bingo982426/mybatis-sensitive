@@ -35,5 +35,9 @@ public enum SensitiveType {
   /**
    * 银行联号
    */
-  UNION_BANK_NO
+  UNION_BANK_NO,
+  /**
+   * 中文姓名
+   */
+  CHINESE_NAME
 }

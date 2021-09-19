@@ -5,6 +5,10 @@ package cn.github.savageyo.sensitive.type;
  */
 public interface SensitiveTypeHandler {
 
+  String SENSITIVE_SYMBOL = "*";
+
+  char SENSITIVE_SYMBOL_CHAR = '*';
+
   /**
    * 获取脱敏的类型枚举
    */

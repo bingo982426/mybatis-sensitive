@@ -3,6 +3,7 @@ package cn.github.savageyo.sensitive.type.handler;
 
 import cn.github.savageyo.sensitive.type.SensitiveType;
 import cn.github.savageyo.sensitive.type.SensitiveTypeHandler;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 
 /**
@@ -11,6 +12,9 @@ import cn.hutool.core.util.StrUtil;
  */
 public class MobileSensitiveHandler implements SensitiveTypeHandler {
 
+  private static final int HEAD_LENGTH = 3;
+  private static final int TAIL_LENGTH = 4;
+
   @Override
   public SensitiveType getSensitiveType() {
     return SensitiveType.MOBILE_PHONE;
@@ -18,12 +22,12 @@ public class MobileSensitiveHandler implements SensitiveTypeHandler {
 
   @Override
   public String handle(Object src) {
-    if (StrUtil.isEmptyIfStr(src)) {
+    if (ObjectUtil.isEmpty(src) || !(src instanceof CharSequence)) {
       return null;
     }
     String mobile = src.toString();
     int length = mobile.length();
-    return StrUtil.padAfter(mobile.substring(0, 3), length - 4, "*")
-      .concat(mobile.substring(length - 4));
+    return StrUtil.padAfter(mobile.substring(0, HEAD_LENGTH), length - TAIL_LENGTH,
+      SENSITIVE_SYMBOL).concat(mobile.substring(length - TAIL_LENGTH));
   }
 }

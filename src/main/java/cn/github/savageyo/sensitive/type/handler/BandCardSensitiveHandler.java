@@ -3,6 +3,7 @@ package cn.github.savageyo.sensitive.type.handler;
 
 import cn.github.savageyo.sensitive.type.SensitiveType;
 import cn.github.savageyo.sensitive.type.SensitiveTypeHandler;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 
 /**
@@ -12,6 +13,9 @@ import cn.hutool.core.util.StrUtil;
  */
 public class BandCardSensitiveHandler implements SensitiveTypeHandler {
 
+  private static final int HEAD_LENGTH = 4;
+  private static final int TAIL_LENGTH = 4;
+
   @Override
   public SensitiveType getSensitiveType() {
     return SensitiveType.BANK_CARD;
@@ -19,12 +23,12 @@ public class BandCardSensitiveHandler implements SensitiveTypeHandler {
 
   @Override
   public String handle(Object src) {
-    if (StrUtil.isEmptyIfStr(src)) {
+    if (ObjectUtil.isEmpty(src) || !(src instanceof CharSequence)) {
       return null;
     }
     String bankCard = StrUtil.replace(src.toString(), " ", "");
     int length = bankCard.length();
-    return StrUtil.padAfter(bankCard.substring(0, 4), length - 4, "*")
-      .concat(bankCard.substring(length - 4));
+    return StrUtil.padAfter(bankCard.substring(0, HEAD_LENGTH), length - TAIL_LENGTH,
+      SENSITIVE_SYMBOL).concat(bankCard.substring(length - TAIL_LENGTH));
   }
 }
