@@ -1,4 +1,4 @@
-package cn.github.savageyo;
+package cn.github.savageyo.sensitive;
 
 import cn.github.savageyo.mapper.LueLueLueMapper;
 import cn.github.savageyo.model.LueLueLue;

@@ -1,4 +1,4 @@
-package cn.github.savageyo;
+package cn.github.savageyo.encrypt;
 
 import cn.github.savageyo.mapper.LueLueLueMapper;
 import cn.github.savageyo.mapper.WaLaLaMapper;

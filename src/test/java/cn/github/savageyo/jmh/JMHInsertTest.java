@@ -1,5 +1,6 @@
-package cn.github.savageyo;
+package cn.github.savageyo.jmh;
 
+import cn.github.savageyo.MybatisSensitiveApplication;
 import cn.github.savageyo.mapper.LueLueLueMapper;
 import cn.github.savageyo.mapper.WaLaLaMapper;
 import cn.github.savageyo.model.LueLueLue;
@@ -27,7 +28,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
 /**
- * JMH 查询基准测试
+ * JMH 插入基准测试
  */
 @BenchmarkMode(Mode.AverageTime)
 @Warmup(iterations = 3)
@@ -36,14 +37,15 @@ import org.springframework.context.ConfigurableApplicationContext;
 @Fork(value = 1)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Thread)
-public class JMHUpdateTest {
+public class JMHInsertTest {
 
   WaLaLaMapper waLaLaMapper;
   LueLueLueMapper lueLueLueMapper;
 
   public static void main(String[] args) throws RunnerException {
-    Options options = new OptionsBuilder().include(JMHUpdateTest.class.getName() + ".*")
-      .output("/Volumes/zen/xxx/jmh_update.txt")
+    //include:指定当前这个类执行options的操作 如果你有多个options不指定其它也会执行
+    Options options = new OptionsBuilder().include(JMHInsertTest.class.getName() + ".*")
+      .output("/Volumes/zen/xxx/jmh_insert.txt")
       .build();
 
     new Runner(options).run();
@@ -60,42 +62,50 @@ public class JMHUpdateTest {
   }
 
   @Benchmark
-  public void encryptUpdateBatchTest() {
+  public void encryptInsertBatchTest() {
     List<WaLaLa> waLaLaList = new ArrayList<>();
-    for (int index = 1001; index <= 2001; index++) {
+    for (int index = 1; index <= 10; index++) {
       WaLaLa waLaLa = new WaLaLa();
-      waLaLa.setId(index);
-      waLaLa.setIdNo("11011319901016058X");
+      waLaLa.setName("tom" + index);
+      waLaLa.setIdNo("110113199805210472");
+      waLaLa.setMobile("13876688314");
+      waLaLa.setBankCard("6216615283785976064");
       waLaLaList.add(waLaLa);
     }
-    waLaLaMapper.updateBatchByPrimaryKeySelective(waLaLaList);
+    waLaLaMapper.insertList(waLaLaList);
   }
 
   @Benchmark
-  public void updateBatchTest() {
+  public void insertBatchTest() {
     List<LueLueLue> lueLueLueList = new ArrayList<>();
-    for (int index = 1001; index <= 2001; index++) {
+    for (int index = 1; index <= 10; index++) {
       LueLueLue lueLueLue = new LueLueLue();
-      lueLueLue.setId(index);
-      lueLueLue.setIdNo("11011319901016058X");
+      lueLueLue.setName("tom" + index);
+      lueLueLue.setIdNo("110113199805210472");
+      lueLueLue.setMobile("13876688314");
+      lueLueLue.setBankCard("6216615283785976064");
       lueLueLueList.add(lueLueLue);
     }
-    lueLueLueMapper.updateBatchByPrimaryKeySelective(lueLueLueList);
+    lueLueLueMapper.insertList(lueLueLueList);
   }
 
   @Benchmark
-  public void encryptUpdateOneTest() {
+  public void encryptInsertOneTest() {
     WaLaLa waLaLa = new WaLaLa();
-    waLaLa.setId(1001);
-    waLaLa.setIdNo("11011319901016058X");
-    waLaLaMapper.updateByPrimaryKeySelective(waLaLa);
+    waLaLa.setName("tom");
+    waLaLa.setIdNo("110113199805210472");
+    waLaLa.setMobile("13876688314");
+    waLaLa.setBankCard("6216615283785976064");
+    waLaLaMapper.insertSelective(waLaLa);
   }
 
   @Benchmark
-  public void updateOneTest() {
+  public void insertOneTest() {
     LueLueLue lueLueLue = new LueLueLue();
-    lueLueLue.setId(1001);
-    lueLueLue.setIdNo("11011319901016058X");
-    lueLueLueMapper.updateByPrimaryKeySelective(lueLueLue);
+    lueLueLue.setName("tom");
+    lueLueLue.setIdNo("110113199805210472");
+    lueLueLue.setMobile("13876688314");
+    lueLueLue.setBankCard("6216615283785976064");
+    lueLueLueMapper.insertSelective(lueLueLue);
   }
 }

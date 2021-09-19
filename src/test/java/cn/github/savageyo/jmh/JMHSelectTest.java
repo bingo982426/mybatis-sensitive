@@ -1,5 +1,6 @@
-package cn.github.savageyo;
+package cn.github.savageyo.jmh;
 
+import cn.github.savageyo.MybatisSensitiveApplication;
 import cn.github.savageyo.mapper.LueLueLueMapper;
 import cn.github.savageyo.mapper.WaLaLaMapper;
 import java.util.concurrent.TimeUnit;
