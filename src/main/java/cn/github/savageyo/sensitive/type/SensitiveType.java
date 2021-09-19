@@ -17,10 +17,6 @@ public enum SensitiveType {
    */
   ID_CARD,
   /**
-   * 座机号
-   */
-  FIXED_PHONE,
-  /**
    * 手机号
    */
   MOBILE_PHONE,
