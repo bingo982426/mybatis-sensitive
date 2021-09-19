@@ -11,11 +11,7 @@ public enum SensitiveType {
   /**
    * 默认脱敏方式
    */
-  DEFAUL,
-  /**
-   * 中文名
-   */
-  CHINESE_NAME,
+  DEFAULT,
   /**
    * 身份证号
    */
@@ -41,11 +37,7 @@ public enum SensitiveType {
    */
   BANK_CARD,
   /**
-   * 公司开户银行联号
+   * 银行联号
    */
-  CNAPS_CODE,
-  /**
-   * 支付签约协议号
-   */
-  PAY_SIGN_NO
+  UNION_BANK_NO
 }

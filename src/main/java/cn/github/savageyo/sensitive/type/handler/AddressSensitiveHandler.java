@@ -21,7 +21,7 @@ public class AddressSensitiveHandler implements SensitiveTypeHandler {
 
   @Override
   public String handle(Object src) {
-    if (src == null) {
+    if (StrUtil.isEmptyIfStr(src)) {
       return null;
     }
     String address = src.toString();

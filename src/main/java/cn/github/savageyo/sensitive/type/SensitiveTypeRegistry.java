@@ -1,7 +1,7 @@
 package cn.github.savageyo.sensitive.type;
 
 import cn.github.savageyo.sensitive.type.handler.AddressSensitiveHandler;
-import cn.github.savageyo.sensitive.type.handler.DafaultSensitiveHandler;
+import cn.github.savageyo.sensitive.type.handler.DefaultSensitiveHandler;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,7 +13,7 @@ public class SensitiveTypeRegistry {
   private static final Map<SensitiveType, SensitiveTypeHandler> HANDLER_REGISTRY = new ConcurrentHashMap<>();
 
   static {
-    HANDLER_REGISTRY.put(SensitiveType.DEFAUL, new DafaultSensitiveHandler());
+    HANDLER_REGISTRY.put(SensitiveType.DEFAULT, new DefaultSensitiveHandler());
     HANDLER_REGISTRY.put(SensitiveType.ADDRESS, new AddressSensitiveHandler());
   }
 
