@@ -1,6 +1,7 @@
-package cn.github.savageyo.sensitive.encrypt;
+package cn.github.savageyo.sensitive.encrypt.support;
 
 import cn.github.savageyo.sensitive.config.EncryptProperty;
+import cn.github.savageyo.sensitive.encrypt.EncryptHandler;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.asymmetric.KeyType;
@@ -12,7 +13,7 @@ import java.nio.charset.StandardCharsets;
  * @Author Savage
  * @Date 2021/9/15
  */
-public class RsaSupport implements Encrypt {
+public class RsaSupport implements EncryptHandler {
 
   private final RSA rsa;
 

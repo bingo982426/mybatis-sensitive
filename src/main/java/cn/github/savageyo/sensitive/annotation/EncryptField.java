@@ -1,5 +1,6 @@
 package cn.github.savageyo.sensitive.annotation;
 
+import cn.github.savageyo.sensitive.encrypt.EncryptType;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Inherited;
@@ -16,5 +17,5 @@ import java.lang.annotation.Target;
 @Documented
 public @interface EncryptField {
 
-  String encryptType() default "aes";
+  EncryptType encryptType() default EncryptType.AES;
 }

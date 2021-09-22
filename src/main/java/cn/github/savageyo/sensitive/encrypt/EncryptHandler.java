@@ -3,7 +3,7 @@ package cn.github.savageyo.sensitive.encrypt;
 /**
  * 加解密接口
  */
-public interface Encrypt {
+public interface EncryptHandler {
 
   /**
    * 对原文进行加密

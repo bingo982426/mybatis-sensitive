@@ -1,6 +1,7 @@
-package cn.github.savageyo.sensitive.encrypt;
+package cn.github.savageyo.sensitive.encrypt.support;
 
 import cn.github.savageyo.sensitive.config.EncryptProperty;
+import cn.github.savageyo.sensitive.encrypt.EncryptHandler;
 import cn.hutool.core.util.HexUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
@@ -11,7 +12,7 @@ import cn.hutool.crypto.symmetric.DES;
  * @Author Savage
  * @Date 2021/9/15
  */
-public class DesSupport implements Encrypt {
+public class DesSupport implements EncryptHandler {
 
   private final DES des;
 

@@ -1,6 +1,7 @@
-package cn.github.savageyo.sensitive.encrypt;
+package cn.github.savageyo.sensitive.encrypt.support;
 
 import cn.github.savageyo.sensitive.config.EncryptProperty;
+import cn.github.savageyo.sensitive.encrypt.EncryptHandler;
 import cn.hutool.core.util.HexUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
@@ -9,7 +10,7 @@ import cn.hutool.crypto.symmetric.AES;
 /**
  * 数据脱敏用到的AES加解密类
  */
-public class AesSupport implements Encrypt {
+public class AesSupport implements EncryptHandler {
 
   private final AES aes;
 
