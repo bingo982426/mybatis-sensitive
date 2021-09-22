@@ -3,7 +3,6 @@ package cn.github.savageyo.sensitive.type.handler;
 
 import cn.github.savageyo.sensitive.type.SensitiveType;
 import cn.github.savageyo.sensitive.type.SensitiveTypeHandler;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 
 /**
@@ -23,7 +22,7 @@ public class EmailSensitiveHandler implements SensitiveTypeHandler {
 
   @Override
   public String handle(Object src) {
-    if (ObjectUtil.isEmpty(src) || !(src instanceof CharSequence)) {
+    if (!needHandler(src)) {
       return null;
     }
     String email = src.toString();

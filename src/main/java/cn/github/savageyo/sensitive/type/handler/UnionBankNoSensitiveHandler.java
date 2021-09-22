@@ -3,7 +3,6 @@ package cn.github.savageyo.sensitive.type.handler;
 
 import cn.github.savageyo.sensitive.type.SensitiveType;
 import cn.github.savageyo.sensitive.type.SensitiveTypeHandler;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 
 /**
@@ -21,11 +20,11 @@ public class UnionBankNoSensitiveHandler implements SensitiveTypeHandler {
 
   @Override
   public String handle(Object src) {
-    if (ObjectUtil.isEmpty(src) || !(src instanceof CharSequence)) {
+    if (!needHandler(src)) {
       return null;
     }
     String snapCard = src.toString();
     return StrUtil.padAfter(snapCard.substring(0, HEAD_LENGTH), snapCard.length(),
-      SENSITIVE_SYMBOL);
+      SENSITIVE_SYMBOL_CHAR);
   }
 }

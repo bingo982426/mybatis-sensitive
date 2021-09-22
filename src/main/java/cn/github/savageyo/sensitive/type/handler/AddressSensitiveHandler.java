@@ -2,7 +2,6 @@ package cn.github.savageyo.sensitive.type.handler;
 
 import cn.github.savageyo.sensitive.type.SensitiveType;
 import cn.github.savageyo.sensitive.type.SensitiveTypeHandler;
-import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 
 /**
@@ -22,19 +21,19 @@ public class AddressSensitiveHandler implements SensitiveTypeHandler {
 
   @Override
   public String handle(Object src) {
-    if (ObjectUtil.isEmpty(src) || !(src instanceof CharSequence)) {
+    if (!needHandler(src)) {
       return null;
     }
     String address = src.toString();
     int length = StrUtil.length(address);
     if (length > SYMBOL_LENGTH + HEAD_LENGTH) {
       return StrUtil.padAfter(address.substring(0, HEAD_LENGTH), HEAD_LENGTH + SYMBOL_LENGTH,
-        SENSITIVE_SYMBOL);
+        SENSITIVE_SYMBOL_CHAR);
     }
     if (length <= HEAD_LENGTH) {
       return address;
     } else {
-      return StrUtil.padAfter(address.substring(0, HEAD_LENGTH), length, SENSITIVE_SYMBOL);
+      return StrUtil.padAfter(address.substring(0, HEAD_LENGTH), length, SENSITIVE_SYMBOL_CHAR);
     }
   }
 }
