@@ -12,7 +12,6 @@ import cn.github.savageyo.sensitive.type.SensitiveTypeRegistry;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.map.MapUtil;
-import cn.hutool.core.util.BooleanUtil;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -97,8 +96,7 @@ public class SensitiveAndDecryptReadInterceptor implements Interceptor {
             objMetaObject.setValue(field, decryptValue);
             beanMap.put(field, decryptValue);
           }
-          if (null == SensitiveHelper.getSensitiveFLag() || BooleanUtil.isTrue(
-            SensitiveHelper.getSensitiveFLag())) {
+          if (null == SensitiveHelper.getSensitiveFLag()) {
             SensitiveBind sensitiveBind = sensitiveBindMap.get(field);
             if (null != sensitiveBind) {
               String value = (String) beanMap.get(field);

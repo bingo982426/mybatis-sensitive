@@ -27,9 +27,9 @@ public class LueLueLue implements Serializable {
   @Column(name = "name")
   private String name;
   @Column(name = "id_no")
-  //@SensitiveField(SensitiveType.DEFAUL)
+  //  @SensitiveField(SensitiveType.DEFAULT)
   private String idNo;
-  //@SensitiveField(SensitiveType.DEFAUL)
+  //  @SensitiveField(SensitiveType.DEFAULT)
   @Column(name = "mobile")
   private String mobile;
   @Column(name = "bank_card")
