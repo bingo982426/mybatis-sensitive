@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Properties;
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
@@ -88,30 +87,28 @@ public class SensitiveAndDecryptReadInterceptor implements Interceptor {
       MetaObject objMetaObject = mappedStatement.getConfiguration().newMetaObject(e);
       Map<String, Object> beanMap = BeanUtil.beanToMap(e);
       annotationFieldList.forEach(field -> {
-        if (!Objects.isNull(beanMap.get(field))) {
-          EncryptField encryptField = encryptFieldMap.get(field);
-          if (null != encryptField) {
-            String decryptValue = EncryptRegistry.getEncryptType(encryptField.encryptType(),
-              encryptProperty).decrypt(beanMap.get(field).toString());
-            objMetaObject.setValue(field, decryptValue);
-            beanMap.put(field, decryptValue);
+        EncryptField encryptField = encryptFieldMap.get(field);
+        if (null != encryptField) {
+          String decryptValue = EncryptRegistry.getEncryptType(encryptField.encryptType(),
+            encryptProperty).decrypt(beanMap.get(field).toString());
+          objMetaObject.setValue(field, decryptValue);
+          beanMap.put(field, decryptValue);
+        }
+        if (null == SensitiveHelper.getSensitiveFLag()) {
+          SensitiveBind sensitiveBind = sensitiveBindMap.get(field);
+          if (null != sensitiveBind) {
+            String value = (String) beanMap.get(sensitiveBind.bindField());
+            SensitiveType sensitiveType = sensitiveBind.value();
+            value = SensitiveTypeRegistry.get(sensitiveType).handle(value);
+            objMetaObject.setValue(field, value);
+            beanMap.put(field, value);
           }
-          if (null == SensitiveHelper.getSensitiveFLag()) {
-            SensitiveBind sensitiveBind = sensitiveBindMap.get(field);
-            if (null != sensitiveBind) {
-              String value = (String) beanMap.get(field);
-              SensitiveType sensitiveType = sensitiveBind.value();
-              value = SensitiveTypeRegistry.get(sensitiveType).handle(value);
-              objMetaObject.setValue(sensitiveBind.bindField(), value);
-              beanMap.put(sensitiveBind.bindField(), value);
-            }
-            SensitiveField sensitiveField = sensitiveFieldMap.get(field);
-            if (null != sensitiveField) {
-              String sensitiveValue = SensitiveTypeRegistry.get(sensitiveField.value())
-                .handle(beanMap.get(field).toString());
-              objMetaObject.setValue(field, sensitiveValue);
-              beanMap.put(field, sensitiveValue);
-            }
+          SensitiveField sensitiveField = sensitiveFieldMap.get(field);
+          if (null != sensitiveField) {
+            String sensitiveValue = SensitiveTypeRegistry.get(sensitiveField.value())
+              .handle(beanMap.get(field).toString());
+            objMetaObject.setValue(field, sensitiveValue);
+            beanMap.put(field, sensitiveValue);
           }
         }
       });
