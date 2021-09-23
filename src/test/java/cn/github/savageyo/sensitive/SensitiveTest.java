@@ -2,6 +2,7 @@ package cn.github.savageyo.sensitive;
 
 import cn.github.savageyo.mapper.LueLueLueMapper;
 import cn.github.savageyo.model.LueLueLue;
+import cn.github.savageyo.sensitive.helper.SensitiveHelper;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.json.JSONUtil;
 import java.util.List;
@@ -42,5 +43,13 @@ class SensitiveTest {
     LueLueLue lueLueLue = lueLueLueMapper.selectIdNoById(2);
     System.out.println(JSONUtil.toJsonStr(lueLueLue));
     Assert.isTrue(lueLueLue.getIdNo().contains("*"));
+  }
+
+  @Test
+  void selectWithShowSensitive() {
+    SensitiveHelper.showSensitive();
+    List<LueLueLue> lueLueLueList = lueLueLueMapper.selectAll();
+    System.out.println(JSONUtil.toJsonStr(lueLueLueList));
+    Assert.isTrue(!lueLueLueList.get(0).getMobile().contains("*"));
   }
 }
