@@ -4,6 +4,7 @@ import cn.github.savageyo.sensitive.annotation.EncryptField;
 import cn.github.savageyo.sensitive.annotation.SensitiveEncrypt;
 import cn.github.savageyo.sensitive.config.EncryptProperty;
 import cn.github.savageyo.sensitive.encrypt.EncryptRegistry;
+import cn.hutool.core.util.ReflectUtil;
 import java.lang.reflect.Field;
 import java.sql.PreparedStatement;
 import java.util.Collection;
@@ -109,7 +110,7 @@ public class SensitiveAndEncryptWriteInterceptor implements Interceptor {
     if (null == sensitiveEncrypt) {
       return;
     }
-    Field[] fields = parameterObjectClass.getDeclaredFields();
+    Field[] fields = ReflectUtil.getFields(parameterObjectClass);
     for (Field field : fields) {
       EncryptField encryptField = field.getAnnotation(EncryptField.class);
       if (null == encryptField) {

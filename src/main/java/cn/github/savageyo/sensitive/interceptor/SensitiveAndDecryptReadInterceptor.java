@@ -12,6 +12,7 @@ import cn.github.savageyo.sensitive.type.SensitiveTypeRegistry;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.map.MapUtil;
+import cn.hutool.core.util.ReflectUtil;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -98,14 +99,14 @@ public class SensitiveAndDecryptReadInterceptor implements Interceptor {
           SensitiveBind sensitiveBind = sensitiveBindMap.get(field);
           if (null != sensitiveBind) {
             String value = (String) beanMap.get(sensitiveBind.bindField());
-            SensitiveType sensitiveType = sensitiveBind.value();
+            SensitiveType sensitiveType = sensitiveBind.sensitiveType();
             value = SensitiveTypeRegistry.get(sensitiveType).handle(value);
             objMetaObject.setValue(field, value);
             beanMap.put(field, value);
           }
           SensitiveField sensitiveField = sensitiveFieldMap.get(field);
           if (null != sensitiveField) {
-            String sensitiveValue = SensitiveTypeRegistry.get(sensitiveField.value())
+            String sensitiveValue = SensitiveTypeRegistry.get(sensitiveField.sensitiveType())
               .handle(beanMap.get(field).toString());
             objMetaObject.setValue(field, sensitiveValue);
             beanMap.put(field, sensitiveValue);
@@ -122,7 +123,8 @@ public class SensitiveAndDecryptReadInterceptor implements Interceptor {
     Map<String, SensitiveBind> sensitiveBindMap, Map<String, SensitiveField> sensitiveFieldMap) {
     Set<String> annotationFieldList = new HashSet<>(16);
     Class<?> clazz = resultMap.getType();
-    for (Field field : clazz.getDeclaredFields()) {
+    Field[] fields = ReflectUtil.getFields(clazz);
+    for (Field field : fields) {
       Annotation[] annotations = field.getAnnotations();
       for (Annotation annotation : annotations) {
         if (annotation instanceof EncryptField) {

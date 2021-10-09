@@ -23,5 +23,5 @@ public @interface SensitiveField {
    * 脱敏类型
    * 不同的脱敏类型置换*的方式不同
    */
-  SensitiveType value();
+  SensitiveType sensitiveType();
 }

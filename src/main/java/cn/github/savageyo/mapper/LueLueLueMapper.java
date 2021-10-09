@@ -1,6 +1,7 @@
 package cn.github.savageyo.mapper;
 
 import cn.github.savageyo.model.LueLueLue;
+import cn.github.savageyo.model.LueLueLueDTO;
 import cn.github.savageyo.mybatis.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -14,4 +15,6 @@ import org.apache.ibatis.annotations.Param;
 public interface LueLueLueMapper extends BaseMapper<LueLueLue> {
 
   LueLueLue selectIdNoById(@Param("id") Integer id);
+
+  LueLueLueDTO selectDTO();
 }

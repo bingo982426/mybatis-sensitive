@@ -2,6 +2,7 @@ package cn.github.savageyo.sensitive;
 
 import cn.github.savageyo.mapper.LueLueLueMapper;
 import cn.github.savageyo.model.LueLueLue;
+import cn.github.savageyo.model.LueLueLueDTO;
 import cn.github.savageyo.sensitive.helper.SensitiveHelper;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.json.JSONUtil;
@@ -17,9 +18,6 @@ class SensitiveTest {
   @Autowired
   LueLueLueMapper lueLueLueMapper;
 
-  /**
-   * 先手动开启 {@link cn.github.savageyo.model.LueLueLue}内注释掉的三行代，开启脱敏注解
-   */
   @PostConstruct
   void init() {
     lueLueLueMapper.delete(new LueLueLue());
@@ -51,5 +49,12 @@ class SensitiveTest {
     List<LueLueLue> lueLueLueList = lueLueLueMapper.selectAll();
     System.out.println(JSONUtil.toJsonStr(lueLueLueList));
     Assert.isTrue(!lueLueLueList.get(0).getMobile().contains("*"));
+  }
+
+  @Test
+  void selectExtends() {
+    LueLueLueDTO lueLueLueDTO = lueLueLueMapper.selectDTO();
+    System.out.println(JSONUtil.toJsonStr(lueLueLueDTO));
+    Assert.isTrue(lueLueLueDTO.getMobile().contains("*"));
   }
 }

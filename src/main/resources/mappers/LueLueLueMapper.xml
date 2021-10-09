@@ -18,4 +18,10 @@
     from lue_lue_lue
     where id = #{id,jdbcType=INTEGER};
   </select>
+
+  <select id="selectDTO" resultType="cn.github.savageyo.model.LueLueLueDTO">
+    select id, name, id_no as idNo, bank_card as bankCard, mobile
+    from lue_lue_lue
+    limit 1
+  </select>
 </mapper>

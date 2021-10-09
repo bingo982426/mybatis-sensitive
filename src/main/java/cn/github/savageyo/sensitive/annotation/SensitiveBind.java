@@ -21,6 +21,7 @@ import java.lang.annotation.Target;
  * <p>
  * <p>
  * 则当查询出结果时，userNameOnlyDTO会赋值为username解密后再脱敏的值。
+ * 绑定字段不要增加脱敏注解，否则会两个字段都进行脱敏处理
  */
 @Target({ElementType.FIELD, ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
@@ -41,6 +42,6 @@ public @interface SensitiveBind {
    *
    * @return SensitiveType
    */
-  SensitiveType value();
+  SensitiveType sensitiveType();
 
 }
