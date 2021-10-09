@@ -33,6 +33,9 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testCompileOnly group: 'org.openjdk.jmh', name: 'jmh-core', version: '1.33'
     testCompileOnly group: 'org.openjdk.jmh', name: 'jmh-generator-annprocess', version: '1.33'
+    implementation group: 'com.google.guava', name: 'guava', version: '30.1.1-jre'
+
+
 
 
 }

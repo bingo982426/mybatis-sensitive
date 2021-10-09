@@ -3,6 +3,7 @@ package cn.github.savageyo.encrypt;
 import cn.github.savageyo.mapper.LueLueLueMapper;
 import cn.github.savageyo.mapper.WaLaLaMapper;
 import cn.github.savageyo.model.WaLaLa;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Assert;
 import cn.hutool.json.JSONUtil;
 import com.github.pagehelper.PageHelper;
@@ -196,5 +197,27 @@ class EncryptTest {
     WaLaLa waLaLa = waLaLaMapper.selectIdNoById(1);
     System.out.println(JSONUtil.toJsonStr(waLaLa));
     Assert.isFalse(waLaLa.getIdNo().contains("*"));
+  }
+
+  @Test
+  void selectExampleByPlaintext() {
+    Example example = new Example(WaLaLa.class);
+    Criteria criteria = example.createCriteria();
+    criteria.andEqualTo("idNo", "110113199612131516");
+    criteria.andEqualTo("mobile", "13828541328");
+    List<WaLaLa> waLaLaList = waLaLaMapper.selectByExample(example);
+    System.out.println(JSONUtil.toJsonStr(waLaLaList));
+    Assert.isTrue(CollUtil.isNotEmpty(waLaLaList));
+    Assert.isTrue(waLaLaList.get(0).getIdNo().equals("110113199612131516"));
+    Assert.isTrue(waLaLaList.get(0).getMobile().equals("13828541328"));
+  }
+
+  @Test
+  void selectByPlaintext() {
+    WaLaLa waLaLa = new WaLaLa();
+    waLaLa.setIdNo("110113199612131516");
+    List<WaLaLa> waLaLaList = waLaLaMapper.select(waLaLa);
+    System.out.println(JSONUtil.toJsonStr(waLaLaList));
+    Assert.isTrue(CollUtil.isNotEmpty(waLaLaList));
   }
 }
